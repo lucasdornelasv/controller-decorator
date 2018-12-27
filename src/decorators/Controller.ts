@@ -13,13 +13,13 @@ import RequestConfig from "../models/RequestConfig";
  *
  * @returns {Function}
  * */
-export default function Controller(config = {}) {
+export default function Controller(config : any = {}) : Function {
     config = _.merge({
         staticMode: false,
         immediate: false,
         sender: undefined
     }, config);
-    return Wrap(function (target, key, type) {
+    return Wrap(function (target, key?, type?) {
         if (type == 'class') {
             target.isController = target.prototype.isController = true;
             target.getControllerConfig = target.prototype.getControllerConfig = () => config;
